@@ -139,7 +139,6 @@ function renderBadge(count) {
   return el("span", { position: "absolute", top: "0", right: "0", background: "#3b82f6", color: "#fff", borderRadius: "50%", width: "16px", height: "16px", fontSize: "10px", fontWeight: "700", display: "flex", alignItems: "center", justifyContent: "center", lineHeight: "1" }, count > 9 ? "9+" : count);
 }
  
-// ─── INJECT GLOBAL CSS (card hover overlay) ─────────────────────────────────
 function injectStyles() {
   if (document.getElementById("store-styles")) return;
   const style = document.createElement("style");
@@ -181,7 +180,6 @@ function injectStyles() {
       padding: 2px 8px; border-radius: 4px; z-index: 2;
     }
  
-    /* Product grid: always 4 columns */
     .product-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -213,7 +211,6 @@ function injectStyles() {
   document.head.appendChild(style);
 }
  
-// ─── NAVBAR ──────────────────────────────────────────────────────────────────
 function renderNavbar() {
   const ss = s();
   const navbar = el("nav", {
@@ -224,7 +221,6 @@ function renderNavbar() {
   const inner = el("div");
   inner.className = "inner";
  
-  // Left
   const left = el("div", { display: "flex", alignItems: "center", gap: "28px" });
   const logo = el("span", { fontWeight: "700", fontSize: "16px", cursor: "pointer", color: ss.text }, "Store");
   logo.onclick = () => nav("home");
@@ -316,7 +312,6 @@ function renderNavbar() {
   return navbar;
 }
  
-// ─── SEARCH BAR ──────────────────────────────────────────────────────────────
 function renderSearchBar() {
   const ss = s();
   const wrap = el("div", { marginBottom: "24px" });
@@ -354,7 +349,6 @@ function renderSearchBar() {
   return wrap;
 }
  
-// ─── PRODUCT CARD (4-col with hover overlay) ─────────────────────────────────
 function renderProductCard(product) {
   const ss = s();
   const wished = inWishlist(product.id);
@@ -370,13 +364,11 @@ function renderProductCard(product) {
   });
   card.className = "product-card";
  
-  // Image section
   const imgWrap = el("div", { position: "relative", background: "#fff", height: "220px", display: "flex", alignItems: "center", justifyContent: "center" });
   const img = el("img", { maxHeight: "200px", maxWidth: "100%", objectFit: "contain", padding: "16px" });
   img.src = product.image; img.alt = product.title;
   imgWrap.appendChild(img);
  
-  // Wishlist corner button
   const wishBtn = el("button");
   wishBtn.className = "wish-corner";
   wishBtn.style.color = wished ? "#ef4444" : "#fff";
@@ -384,13 +376,11 @@ function renderProductCard(product) {
   wishBtn.onclick = (e) => { e.stopPropagation(); toggleWishlist(product); };
   imgWrap.appendChild(wishBtn);
  
-  // Rating badge
   const ratingBadge = el("span");
   ratingBadge.className = "rating-badge";
   ratingBadge.innerHTML = `★ ${product.rating}`;
   imgWrap.appendChild(ratingBadge);
  
-  // Hover overlay with eye + cart buttons
   const overlay = el("div");
   overlay.className = "card-overlay";
  
@@ -415,7 +405,6 @@ function renderProductCard(product) {
   imgWrap.appendChild(overlay);
   card.appendChild(imgWrap);
  
-  // Card body
   const body = el("div", { padding: "12px 14px", flex: "1", display: "flex", flexDirection: "column", gap: "6px" });
   const title = el("div", { fontSize: "13px", color: ss.text, lineHeight: "1.4", flex: "1" }, product.title.length > 52 ? product.title.slice(0, 52) + "..." : product.title);
   const price = el("div", { fontSize: "16px", fontWeight: "700", color: ss.text }, `$${product.price.toFixed(2)}`);
@@ -429,7 +418,6 @@ function renderProductCard(product) {
   return card;
 }
  
-// ─── PRODUCT GRID (4 cols via CSS class) ─────────────────────────────────────
 function renderProductGrid(products) {
   const grid = document.createElement("div");
   grid.className = "product-grid";
@@ -437,7 +425,6 @@ function renderProductGrid(products) {
   return grid;
 }
  
-// ─── SINGLE PRODUCT PAGE ─────────────────────────────────────────────────────
 function renderProductPage() {
   const ss = s();
   const product = PRODUCTS.find(p => p.id === state.productId);
@@ -449,37 +436,29 @@ function renderProductPage() {
  
   const page = el("div", { paddingBottom: "60px" });
  
-  // Container
   const wrap = el("div");
   wrap.className = "page-container";
  
-  // Back link
   const back = el("div", { display: "flex", alignItems: "center", gap: "6px", color: ss.textMuted, fontSize: "14px", cursor: "pointer", padding: "20px 0 24px", width: "fit-content" }, `${ICON.arrowLeft} Back to products`);
   back.onclick = () => { history.back ? nav("products") : nav("products"); };
   wrap.appendChild(back);
  
-  // Main product layout
   const layout = el("div", { display: "grid", gridTemplateColumns: "1fr 1fr", gap: "48px", alignItems: "start" });
  
-  // Left – big image
   const imgSide = el("div", { background: "#fff", borderRadius: "12px", display: "flex", alignItems: "center", justifyContent: "center", minHeight: "460px", padding: "32px" });
   const bigImg = el("img", { maxWidth: "100%", maxHeight: "400px", objectFit: "contain" });
   bigImg.src = product.image; bigImg.alt = product.title;
   imgSide.appendChild(bigImg);
   layout.appendChild(imgSide);
  
-  // Right – details
   const info = el("div");
  
-  // Category tag
   const catTag = el("span", { background: ss.cardBg, border: `1px solid ${ss.cardBorder}`, borderRadius: "20px", padding: "3px 12px", fontSize: "12px", color: ss.textMuted }, product.category);
   info.appendChild(catTag);
  
-  // Title
   const titleEl = el("h1", { fontSize: "26px", fontWeight: "700", margin: "12px 0 8px", lineHeight: "1.3", color: ss.text }, product.title);
   info.appendChild(titleEl);
  
-  // Stars
   const starsEl = el("div", { display: "flex", alignItems: "center", gap: "8px", marginBottom: "12px" });
   const fullStars = Math.floor(product.rating);
   let starsHtml = '<span class="stars">';
@@ -488,11 +467,9 @@ function renderProductPage() {
   starsEl.innerHTML = starsHtml + `<span style="font-size:14px;color:${ss.textMuted}">${product.rating} (${product.reviews} reviews)</span>`;
   info.appendChild(starsEl);
  
-  // Price
   const priceEl = el("div", { fontSize: "28px", fontWeight: "800", color: ss.text, marginBottom: "20px" }, `$${product.price.toFixed(2)}`);
   info.appendChild(priceEl);
  
-  // Tabs
   const tabsWrap = el("div", { display: "flex", gap: "4px", borderBottom: `1px solid ${ss.cardBorder}`, marginBottom: "16px" });
   ["description", "details", "shipping"].forEach(tab => {
     const btn = el("button");
@@ -506,7 +483,6 @@ function renderProductPage() {
   });
   info.appendChild(tabsWrap);
  
-  // Tab content
   let tabContent = "";
   if (state.productTab === "description") {
     tabContent = product.description;
@@ -518,7 +494,6 @@ function renderProductPage() {
   const tabText = el("p", { fontSize: "14px", color: ss.textMuted, lineHeight: "1.75", marginBottom: "24px", whiteSpace: "pre-line" }, tabContent);
   info.appendChild(tabText);
  
-  // Quantity + Add to cart row
   const qtyRow = el("div", { display: "flex", alignItems: "center", gap: "16px", marginBottom: "0" });
  
   const qtyLabel = el("span", { fontSize: "14px", fontWeight: "500", color: ss.text }, "Quantity");
@@ -537,7 +512,6 @@ function renderProductPage() {
   qtyRow.appendChild(qtyControl);
   info.appendChild(qtyRow);
  
-  // Add to cart + wishlist row
   const actionRow = el("div", { display: "flex", gap: "10px", marginTop: "16px", alignItems: "center" });
  
   const bigAddBtn = el("button", { flex: "1", background: "#3b82f6", color: "#fff", border: "none", borderRadius: "8px", padding: "12px 0", fontSize: "15px", fontWeight: "600", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: "8px" }, `${ICON.cart} Add to Cart`);
@@ -559,7 +533,6 @@ function renderProductPage() {
   layout.appendChild(info);
   wrap.appendChild(layout);
  
-  // Similar products section
   if (similar.length > 0) {
     const simSection = el("div", { marginTop: "56px" });
     const simTitle = el("h2", { fontSize: "20px", fontWeight: "700", marginBottom: "20px", color: ss.text }, "Similar Products");
@@ -582,7 +555,6 @@ function renderProductPage() {
   return page;
 }
  
-// ─── PAGES ────────────────────────────────────────────────────────────────────
 function renderHomePage() {
   const page = el("div", { paddingBottom: "40px" });
   const wrap = el("div"); wrap.className = "page-container";
@@ -738,7 +710,6 @@ function renderLoginPage() {
   return wrap;
 }
  
-// ─── FOOTER ──────────────────────────────────────────────────────────────────
 function renderFooter() {
   const ss = s();
   const footer = el("footer", { background: ss.footerBg, padding: "40px 0 24px", marginTop: "40px", borderTop: `1px solid ${ss.navBorder}` });
@@ -779,7 +750,6 @@ function renderFooter() {
   return footer;
 }
  
-// ─── MAIN RENDER ─────────────────────────────────────────────────────────────
 function render() {
   injectStyles();
   const ss = s();
