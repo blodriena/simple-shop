@@ -1,20 +1,20 @@
 const PRODUCTS = [
-  { id: 1, title: "Mens Casual Premium Slim Fit T-Shirts", price: 22.30, category: "men's clothing", image: "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg", rating: 4.1 },
-  { id: 2, title: "Mens Casual Slim Fit", price: 15.99, category: "men's clothing", image: "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg", rating: 4.0 },
-  { id: 3, title: "Mens Cotton Jacket", price: 55.99, category: "men's clothing", image: "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg", rating: 4.7 },
-  { id: 4, title: "Fjallraven - Foldsack No. 1 Backpack", price: 109.95, category: "men's clothing", image: "https://fakestoreapi.com/img/81fAZal24fL._AC_UY879_.jpg", rating: 3.9 },
-  { id: 5, title: "John Hardy Women's Legends Naga Gold & Silver Dragon Bracelet", price: 695.00, category: "jewelery", image: "https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_FMwebp_QL65_.jpg", rating: 4.6 },
-  { id: 6, title: "Solid Gold Petite Micropave", price: 168.00, category: "jewelery", image: "https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_FMwebp_QL65_.jpg", rating: 3.9 },
-  { id: 7, title: "White Gold Plated Princess Cut Earrings", price: 9.99, category: "jewelery", image: "https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_FMwebp_QL65_.jpg", rating: 3.0 },
-  { id: 8, title: "Pierced Owl Rose Gold Plated Stainless Steel", price: 10.99, category: "jewelery", image: "https://fakestoreapi.com/img/51UDEzMJVpL._AC_UL640_FMwebp_QL65_.jpg", rating: 1.9 },
-  { id: 9, title: "WD 2TB Elements Portable External Hard Drive", price: 64.00, category: "electronics", image: "https://fakestoreapi.com/img/61IBBVJvSDL._AC_SY879_.jpg", rating: 3.3 },
-  { id: 10, title: "Samsung 49-Inch CHG90 144Hz Curved Gaming Monitor", price: 999.99, category: "electronics", image: "https://fakestoreapi.com/img/81Zt42ioCgL._AC_SX679_.jpg", rating: 2.2 },
-  { id: 11, title: "Silicon Power 256GB SSD 3D NAND", price: 109.00, category: "electronics", image: "https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_.jpg", rating: 4.8 },
-  { id: 12, title: "SanDisk SSD PLUS 1TB Internal SSD", price: 109.00, category: "electronics", image: "https://fakestoreapi.com/img/61XUMiX2ES4L._AC_UY879_.jpg", rating: 2.9 },
-  { id: 13, title: "Women's 3-in-1 Snowboard Jacket Winter Coats", price: 56.99, category: "women's clothing", image: "https://fakestoreapi.com/img/51Y5NI-I5jL._AC_UX679_.jpg", rating: 2.6 },
-  { id: 14, title: "Lock and Love Women's Removable Hooded Faux Leather Moto Biker Jacket", price: 29.95, category: "women's clothing", image: "https://fakestoreapi.com/img/81XH0e8fefL._AC_UY879_.jpg", rating: 2.9 },
-  { id: 15, title: "Rain Jacket Women Windbreaker Striped Climbing Raincoats", price: 39.99, category: "women's clothing", image: "https://fakestoreapi.com/img/71HblAHs1xL._AC_UY879_-2.jpg", rating: 3.8 },
-  { id: 16, title: "MBJ Women's Solid Short Sleeve Boat Neck V", price: 9.85, category: "women's clothing", image: "https://fakestoreapi.com/img/71z3kpMAYsL._AC_UY879_.jpg", rating: 4.7 },
+  { id: 1, title: "Mens Casual Premium Slim Fit T-Shirts", price: 22.30, category: "men's clothing", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrkcoLQOhIUUGQiyVrEM8JehInnK2XSbpdmw&s", rating: 4.1 },
+  { id: 2, title: "Mens Casual Slim Fit", price: 15.99, category: "men's clothing", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ63wD20TjbroL4GaLTYJ-Jm_Jh9WBOA48_mQ&s", rating: 4.0 },
+  { id: 3, title: "Mens Cotton Jacket", price: 55.99, category: "men's clothing", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQy3C9YaQ1AG_A-OGybJf5tMptpqaBk24eRhQ&s", rating: 4.7 },
+  { id: 4, title: "Fjallraven - Foldsack No. 1 Backpack", price: 109.95, category: "men's clothing", image: "https://img.magnific.com/free-photo/short-sleeve-black-t-shirt_1409-2226.jpg?semt=ais_hybrid&w=740&q=80", rating: 3.9 },
+  { id: 5, title: "John Hardy Women's Legends Naga Gold & Silver Dragon Bracelet", price: 695.00, category: "jewelery", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-kgbQRw4ODctPUVnes8PFaIKQS7EWZK04QA&s", rating: 4.6 },
+  { id: 6, title: "Solid Gold Petite Micropave", price: 168.00, category: "jewelery", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ73OaLIfGc01Z2dNef73s0RsT2heY3D7Znew&s", rating: 3.9 },
+  { id: 7, title: "White Gold Plated Princess Cut Earrings", price: 9.99, category: "jewelery", image: "https://privilegia.uz/wp-content/uploads/2026/03/photo_2026-04-02_23-45-56-e1775155611763.jpg", rating: 3.0 },
+  { id: 8, title: "Pierced Owl Rose Gold Plated Stainless Steel", price: 10.99, category: "jewelery", image: "https://www.shutterstock.com/image-illustration/diamond-ring-radian-pear-cut-600nw-2554062037.jpg", rating: 1.9 },
+  { id: 9, title: "WD 2TB Elements Portable External Hard Drive", price: 64.00, category: "electronics", image: "https://privilegia.uz/wp-content/uploads/2026/04/image-14-scaled-1.png", rating: 3.3 },
+  { id: 10, title: "Samsung 49-Inch CHG90 144Hz Curved Gaming Monitor", price: 999.99, category: "electronics", image: "https://www.shutterstock.com/image-photo/baguette-diamond-ring-on-white-600nw-2682026455.jpg", rating: 2.2 },
+  { id: 11, title: "Silicon Power 256GB SSD 3D NAND", price: 109.00, category: "electronics", image: "https://t3.ftcdn.net/jpg/02/95/12/70/360_F_295127088_IEk7c55MpYFOVv8DCsY8HuPNKupeq1Cz.jpg", rating: 4.8 },
+  { id: 12, title: "SanDisk SSD PLUS 1TB Internal SSD", price: 109.00, category: "electronics", image: "https://static.vecteezy.com/system/resources/previews/047/080/710/non_2x/luxury-wrist-watch-on-transparent-background-png.png", rating: 2.9 },
+  { id: 13, title: "Women's 3-in-1 Snowboard Jacket Winter Coats", price: 56.99, category: "women's clothing", image: "https://thumbs.dreamstime.com/b/bangkok-thailand-sep-sony-playstation-s-dualshock-wireless-controller-isolated-white-background-illustrative-editorial-content-127622525.jpg", rating: 2.6 },
+  { id: 14, title: "Lock and Love Women's Removable Hooded Faux Leather Moto Biker Jacket", price: 29.95, category: "women's clothing", image: "https://c4.wallpaperflare.com/wallpaper/607/778/544/playstation-4-consoles-video-games-sony-wallpaper-preview.jpg", rating: 2.9 },
+  { id: 15, title: "Rain Jacket Women Windbreaker Striped Climbing Raincoats", price: 39.99, category: "women's clothing", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVh6mWQt-XEzw-s1B_mEM5fGO04AePGI3bhA&s", rating: 3.8 },
+  { id: 16, title: "MBJ Women's Solid Short Sleeve Boat Neck V", price: 9.85, category: "women's clothing", image: "https://static.vecteezy.com/system/resources/thumbnails/024/509/430/small/jacket-isolated-on-background-with-generative-ai-png.png", rating: 4.7 },
 ];
  
 const CATEGORIES = [
@@ -626,3 +626,9 @@ function render() {
 }
  
 render();
+
+
+
+
+
+
