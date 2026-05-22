@@ -17,6 +17,8 @@ const PRODUCTS = [
   { id: 16, title: "MBJ Women's Solid Short Sleeve Boat Neck V", price: 9.85, category: "women's clothing", image: "https://fakestoreapi.com/img/71z3kpMAYsL._AC_UY879_.jpg", rating: 4.7 },
 ];
  
+
+
 const CATEGORIES = [
   { id: "electronics", label: "Electronics", desc: "Browse all electronics products" },
   { id: "jewelery", label: "Jewelery", desc: "Browse all jewelery products" },
