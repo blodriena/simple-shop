@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e222b" />
+      <stop offset="100%" stop-color="#0f1115" />
+    </linearGradient>
+    <linearGradient id="brandGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4ba3ff" />
+      <stop offset="100%" stop-color="#2563eb" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="12" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <rect width="512" height="512" rx="112" fill="url(#bgGradient)" />
+  <rect width="500" height="500" x="6" y="6" rx="106" fill="none" stroke="#2a303c" stroke-width="6" opacity="0.5" />
+
+  <g transform="translate(0, 15)" filter="url(#glow)">
+    <path d="M192,190 V140 C192,104.6 220.6,76 256,76 C291.4,76 320,104.6 320,140 V190" 
+          fill="none" 
+          stroke="url(#brandGradient)" 
+          stroke-width="28" 
+          stroke-linecap="round" />
+    
+    <path d="M140,190 H372 L392,400 C392,413.2 381.2,424 368,424 H144 C130.8,424 120,413.2 120,400 Z" 
+          fill="none" 
+          stroke="url(#brandGradient)" 
+          stroke-width="32" 
+          stroke-linejoin="round" />
+          
+    <path d="M220,255 H290 C305,255 310,265 310,275 C310,290 295,295 285,295 H230 C210,295 202,305 202,320 C202,335 215,345 230,345 H300" 
+          fill="none" 
+          stroke="#ffffff" 
+          stroke-width="26" 
+          stroke-linecap="round" 
+          stroke-linejoin="round" />
+  </g>
+</svg>
