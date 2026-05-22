@@ -1,7 +1,6 @@
 const params = new URLSearchParams(window.location.search);
 const id = params.get('id') || '1';
  
-// ─── Theme / Styles ───────────────────────────────────────────────────────────
 const THEMES = {
   dark: {
     bg: '#0d1117', navBg: '#0d1117', navBorder: 'rgba(255,255,255,0.08)',
@@ -34,7 +33,6 @@ const THEMES = {
 let theme = 'dark';
 function s() { return THEMES[theme]; }
  
-// ─── State ────────────────────────────────────────────────────────────────────
 let product = null;
 let related = [];
 let cart = JSON.parse(localStorage.getItem('cart') || '[]');
@@ -63,7 +61,6 @@ function inWishlist(id) { return wishlist.some(i => i.id === id); }
 function inCart(id) { return cart.some(i => i.id === id); }
 function cartCount() { return cart.reduce((a, i) => a + i.qty, 0); }
  
-// ─── Helpers ──────────────────────────────────────────────────────────────────
 function el(tag, styles, html, attrs) {
   const elem = document.createElement(tag);
   if (styles) Object.assign(elem.style, styles);
@@ -83,7 +80,6 @@ function renderStars(rating) {
   return stars;
 }
  
-// ─── Icons ────────────────────────────────────────────────────────────────────
 const ICON = {
   moon: '<svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>',
   heart: f => `<svg width="18" height="18" fill="${f ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>`,
@@ -98,7 +94,6 @@ const ICON = {
   shield: '<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
 };
  
-// ─── Navbar ───────────────────────────────────────────────────────────────────
 function renderNavbar() {
   const ss = s();
   const nav = el('nav', {
@@ -108,7 +103,6 @@ function renderNavbar() {
     position: 'sticky', top: '0', zIndex: '200'
   });
  
-  // Left: logo + links
   const left = el('div', { display: 'flex', alignItems: 'center', gap: '28px' });
   const logo = el('span', { fontWeight: '700', fontSize: '16px', cursor: 'pointer', color: ss.text }, 'Store');
   logo.onclick = () => { window.location.href = 'index.html'; };
@@ -121,10 +115,8 @@ function renderNavbar() {
   left.appendChild(links);
   nav.appendChild(left);
  
-  // Right: theme + wishlist + cart + login
   const right = el('div', { display: 'flex', alignItems: 'center', gap: '8px' });
  
-  // Theme toggle
   const themeWrap = el('div', { position: 'relative' });
   const themeBtn = el('button', { background: 'transparent', border: 'none', color: ss.textMuted, cursor: 'pointer', width: '36px', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '6px' }, ICON.moon);
   const themeDrop = el('div', { position: 'absolute', top: 'calc(100% + 6px)', right: '0', background: ss.dropBg, border: `1px solid ${ss.dropBorder}`, borderRadius: '8px', padding: '8px', minWidth: '120px', zIndex: '999', boxShadow: '0 8px 24px rgba(0,0,0,0.3)', display: 'none' });
@@ -139,7 +131,6 @@ function renderNavbar() {
   themeWrap.appendChild(themeBtn); themeWrap.appendChild(themeDrop);
   right.appendChild(themeWrap);
  
-  // Wishlist icon
   const wBtn = el('button', { background: 'transparent', border: 'none', color: ss.textMuted, cursor: 'pointer', width: '36px', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '6px', position: 'relative' }, ICON.heart(false));
   if (wishlist.length > 0) {
     const b = el('span', { position: 'absolute', top: '0', right: '0', background: '#3b82f6', color: '#fff', borderRadius: '50%', width: '16px', height: '16px', fontSize: '10px', fontWeight: '700', display: 'flex', alignItems: 'center', justifyContent: 'center' }, wishlist.length > 9 ? '9+' : String(wishlist.length));
@@ -147,7 +138,6 @@ function renderNavbar() {
   }
   right.appendChild(wBtn);
  
-  // Cart icon
   const cCount = cartCount();
   const cBtn = el('button', { background: 'transparent', border: 'none', color: ss.textMuted, cursor: 'pointer', width: '36px', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '6px', position: 'relative' }, ICON.cart);
   if (cCount > 0) {
@@ -156,7 +146,6 @@ function renderNavbar() {
   }
   right.appendChild(cBtn);
  
-  // Login
   const loginBtn = el('button', { background: 'transparent', border: `1px solid ${ss.btnOutline}`, color: ss.text, borderRadius: '6px', padding: '6px 14px', fontSize: '14px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px' }, ICON.user + ' Login');
   right.appendChild(loginBtn);
  
@@ -164,7 +153,6 @@ function renderNavbar() {
   return nav;
 }
  
-// ─── Breadcrumb ───────────────────────────────────────────────────────────────
 function renderBreadcrumb() {
   const ss = s();
   const wrap = el('div', { padding: '14px 24px', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '13px', color: ss.breadcrumb, borderBottom: `1px solid ${ss.navBorder}` });
@@ -178,7 +166,6 @@ function renderBreadcrumb() {
   return wrap;
 }
  
-// ─── Loading Skeleton ─────────────────────────────────────────────────────────
 function renderSkeleton() {
   const ss = s();
   const wrap = el('div', { padding: '32px 24px' });
@@ -193,7 +180,6 @@ function renderSkeleton() {
   return wrap;
 }
  
-// ─── Main Product Section ─────────────────────────────────────────────────────
 function renderProduct() {
   const ss = s();
   if (!product) return renderSkeleton();
@@ -203,15 +189,11 @@ function renderProduct() {
  
   const section = el('section', { padding: '32px 24px' });
  
-  // Grid: left = gallery, right = details
   const grid = el('div', { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '48px', alignItems: 'start' });
  
-  // ── LEFT: Image Gallery ─────────────────────────────────────────────────────
   const galleryCol = el('div', { display: 'flex', gap: '14px' });
  
-  // Thumbnail list (left sidebar)
   const thumbList = el('div', { display: 'flex', flexDirection: 'column', gap: '10px' });
-  // FakeStore only has one image, so we fake 3 thumbs of the same image
   const thumbImages = [product.image, product.image, product.image];
   thumbImages.forEach((imgSrc, i) => {
     const thumb = el('button', {
@@ -231,24 +213,20 @@ function renderProduct() {
   });
   galleryCol.appendChild(thumbList);
  
-  // Main image
   const mainImgWrap = el('div', { flex: '1', background: '#fff', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '32px', minHeight: '420px', position: 'relative' });
   const mainImg = el('img', { maxHeight: '360px', maxWidth: '100%', objectFit: 'contain' });
   mainImg.src = thumbImages[activeThumb];
   mainImg.alt = product.title;
   mainImgWrap.appendChild(mainImg);
  
-  // Share button
   const shareBtn = el('button', { position: 'absolute', top: '12px', right: '12px', background: 'rgba(0,0,0,0.08)', border: 'none', borderRadius: '6px', width: '34px', height: '34px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: '#666' }, ICON.share);
   mainImgWrap.appendChild(shareBtn);
   galleryCol.appendChild(mainImgWrap);
  
   grid.appendChild(galleryCol);
  
-  // ── RIGHT: Product Details ──────────────────────────────────────────────────
   const details = el('div', { display: 'flex', flexDirection: 'column', gap: '18px' });
  
-  // Category badge
   const catBadge = el('span', {
     fontSize: '12px', color: ss.textMuted, background: ss.cardBg,
     border: `1px solid ${ss.cardBorder}`, borderRadius: '20px',
@@ -256,10 +234,8 @@ function renderProduct() {
   }, product.category);
   details.appendChild(catBadge);
  
-  // Title
   details.appendChild(el('h1', { fontSize: '22px', fontWeight: '700', color: ss.text, lineHeight: '1.35' }, product.title));
  
-  // Rating row
   const ratingRow = el('div', { display: 'flex', alignItems: 'center', gap: '10px' });
   ratingRow.innerHTML = renderStars(product.rating.rate) +
     `<span style="font-size:14px;color:${ss.textMuted}">${product.rating.rate} (${product.rating.count} reviews)</span>`;
@@ -385,7 +361,6 @@ function renderProduct() {
   return section;
 }
  
-// ─── Related Products ─────────────────────────────────────────────────────────
 function renderRelated() {
   const ss = s();
   if (!related.length) return el('div');
@@ -426,7 +401,6 @@ function renderRelated() {
   return section;
 }
  
-// ─── Footer ───────────────────────────────────────────────────────────────────
 function renderFooter() {
   const ss = s();
   const footer = el('footer', { background: ss.footerBg, padding: '40px 24px 24px', borderTop: `1px solid ${ss.navBorder}` });
@@ -465,7 +439,6 @@ function renderFooter() {
   return footer;
 }
  
-// ─── Main Render ──────────────────────────────────────────────────────────────
 function renderPage() {
   const ss = s();
   document.body.style.background = ss.bg;
@@ -481,9 +454,8 @@ function renderPage() {
   root.appendChild(renderFooter());
 }
  
-// ─── Fetch product + related ──────────────────────────────────────────────────
 function init() {
-  renderPage(); // show skeleton first
+  renderPage(); 
  
   fetch(`https://fakestoreapi.com/products/${id}`)
     .then(res => res.json())
@@ -491,7 +463,6 @@ function init() {
       product = data;
       document.title = product.title;
  
-      // Fetch related (same category)
       fetch(`https://fakestoreapi.com/products/category/${encodeURIComponent(product.category)}`)
         .then(res => res.json())
         .then(cats => {
