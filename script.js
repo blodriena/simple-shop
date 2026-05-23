@@ -558,9 +558,6 @@ function renderProductPage() {
   return page;
 }
  
-
-
-
 function renderHomePage() {
   Model.renderHomePage()
   const page = el("div", { paddingBottom: "40px" });
