@@ -16,8 +16,8 @@ const PRODUCTS = [
   { id: 15, title: "Rain Jacket Women Windbreaker Striped Climbing Raincoats", price: 39.99, category: "women's clothing", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVh6mWQt-XEzw-s1B_mEM5fGO04AePGI3bhA&s", rating: 3.8, reviews: 679, description: "Lightweight perfect for trip or casual wear---Long sleeve with hooded, adjustable drawstring waist design. Button and zipper front closure raincoat." },
   { id: 16, title: "MBJ Women's Solid Short Sleeve Boat Neck V", price: 9.85, category: "women's clothing", image: "https://static.vecteezy.com/system/resources/thumbnails/024/509/430/small/jacket-isolated-on-background-with-generative-ai-png.png", rating: 4.7, reviews: 130, description: "95% RAYON 5% SPANDEX, Made in USA or Imported, Do Not Bleach, Lightweight fabric with great stretch for comfort, Ribbed on sleeves and neckline." },
 ];
- 
-const CATEGORIES = [
+
+MediaSourceHandle.const CATEGORIES = [
   { id: "electronics", label: "Electronics", desc: "Browse all electronics products" },
   { id: "jewelery", label: "Jewelery", desc: "Browse all jewelery products" },
   { id: "men's clothing", label: "Men's Clothing", desc: "Browse all men's clothing products" },
@@ -62,7 +62,7 @@ let state = {
   loggedIn: false,
 };
  
-function getEffectiveTheme(t) {
+View.function getEffectiveTheme(t) {
   if (t === "system") return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
   return t;
 }
@@ -82,7 +82,7 @@ function toggleWishlist(product) {
   else state.wishlist = [...state.wishlist, product];
   render();
 }
-function inWishlist(id) { return state.wishlist.some(i => i.id === id); }
+Model.function inWishlist(id) { return state.wishlist.some(i => i.id === id); }
 function inCart(id) { return state.cart.some(i => i.id === id); }
 function cartTotal() { return state.cart.reduce((acc, i) => acc + i.price * i.qty, 0); }
 function cartCount() { return state.cart.reduce((acc, i) => acc + i.qty, 0); }
@@ -93,7 +93,6 @@ function nav(p, extra) {
   window.scrollTo(0, 0);
   render();
 }
- 
 function filterProducts() {
   let p = PRODUCTS;
   if (state.search) p = p.filter(x => x.title.toLowerCase().includes(state.search.toLowerCase()));
@@ -126,20 +125,20 @@ const ICON = {
   arrowLeft: `<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>`,
   heartSm: (filled, color) => `<svg width="16" height="16" fill="${filled ? color : 'none'}" stroke="${color}" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>`,
 };
- 
-function el(tag, styles, innerHTML, attrs = {}) {
+
+Model.function (tag, styles, innerHTML, attrs = {}) {
   const elem = document.createElement(tag);
   if (styles) applyStyles(elem, styles);
   if (innerHTML !== undefined) elem.innerHTML = innerHTML;
   Object.entries(attrs).forEach(([k, v]) => elem.setAttribute(k, v));
   return elem;
 }
- 
+
 function renderBadge(count) {
   return el("span", { position: "absolute", top: "0", right: "0", background: "#3b82f6", color: "#fff", borderRadius: "50%", width: "16px", height: "16px", fontSize: "10px", fontWeight: "700", display: "flex", alignItems: "center", justifyContent: "center", lineHeight: "1" }, count > 9 ? "9+" : count);
 }
  
-function injectStyles() {
+model.function injectStyles() {
   if (document.getElementById("store-styles")) return;
   const style = document.createElement("style");
   style.id = "store-styles";
@@ -211,7 +210,7 @@ function injectStyles() {
   document.head.appendChild(style);
 }
  
-function renderNavbar() {
+view.function renderNavbar() {
   const ss = s();
   const navbar = el("nav", {
     background: ss.navBg, borderBottom: `1px solid ${ss.navBorder}`,
@@ -302,7 +301,6 @@ function renderNavbar() {
   cartWrap.appendChild(cartBtn); cartWrap.appendChild(cartDrop);
   right.appendChild(cartWrap);
  
-  // Login
   const loginBtn = el("button", { background: "transparent", border: `1px solid ${ss.btnOutline}`, color: ss.text, borderRadius: "6px", padding: "6px 14px", fontSize: "14px", cursor: "pointer", display: "flex", alignItems: "center", gap: "6px" }, `${ICON.user} Login`);
   loginBtn.onclick = () => nav("login");
   right.appendChild(loginBtn);
@@ -337,6 +335,7 @@ function renderSearchBar() {
     filterRow.appendChild(catSelect);
  
     const sortSelect = el("select", { background: ss.inputBg, border: `1px solid ${ss.inputBorder}`, color: ss.text, borderRadius: "6px", padding: "6px 10px", fontSize: "13px" });
+    model.sortSelect()
     sortSelect.innerHTML = `<option value="">Sort By</option><option value="price-asc" ${state.sortBy === "price-asc" ? "selected" : ""}>Price: Low to High</option><option value="price-desc" ${state.sortBy === "price-desc" ? "selected" : ""}>Price: High to Low</option><option value="rating" ${state.sortBy === "rating" ? "selected" : ""}>Top Rated</option>`;
     sortSelect.onchange = e => { state.sortBy = e.target.value; render(); };
     filterRow.appendChild(sortSelect);
@@ -471,8 +470,10 @@ function renderProductPage() {
   info.appendChild(priceEl);
  
   const tabsWrap = el("div", { display: "flex", gap: "4px", borderBottom: `1px solid ${ss.cardBorder}`, marginBottom: "16px" });
+  Model.tabsWrap()
   ["description", "details", "shipping"].forEach(tab => {
     const btn = el("button");
+
     btn.className = `tab-btn${state.productTab === tab ? " active" : ""}`;
     btn.style.color = state.productTab === tab ? ss.text : ss.textMuted;
     btn.style.background = state.productTab === tab ? ss.cardBg : "transparent";
@@ -493,6 +494,7 @@ function renderProductPage() {
   }
   const tabText = el("p", { fontSize: "14px", color: ss.textMuted, lineHeight: "1.75", marginBottom: "24px", whiteSpace: "pre-line" }, tabContent);
   info.appendChild(tabText);
+
  
   const qtyRow = el("div", { display: "flex", alignItems: "center", gap: "16px", marginBottom: "0" });
  
@@ -525,7 +527,8 @@ function renderProductPage() {
     color: wished ? "#ef4444" : ss.textMuted
   }, ICON.heartSm(wished, wished ? "#ef4444" : ss.textMuted));
   wishToggle.onclick = () => toggleWishlist(product);
- 
+ Model.wishToggle()
+
   actionRow.appendChild(bigAddBtn);
   actionRow.appendChild(wishToggle);
   info.appendChild(actionRow);
@@ -546,7 +549,7 @@ function renderProductPage() {
       card.classList.add("sim-card");
       simGrid.appendChild(card);
     });
- 
+ Model.similar()
     simSection.appendChild(simGrid);
     wrap.appendChild(simSection);
   }
@@ -555,7 +558,12 @@ function renderProductPage() {
   return page;
 }
  
+
+
+
+
 function renderHomePage() {
+  Model.renderHomePage()
   const page = el("div", { paddingBottom: "40px" });
   const wrap = el("div"); wrap.className = "page-container";
   wrap.appendChild(el("h1", { fontSize: "24px", fontWeight: "700", margin: "28px 0 20px" }, "Online Store"));
