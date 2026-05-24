@@ -668,7 +668,7 @@ const View = {
     page.appendChild(wrap);
     return page;
   },
- 
+  
   renderWishlistPage() {
     const ss = Model.getStyles();
     const page = this.el("div", { paddingBottom: "40px" });
@@ -687,7 +687,7 @@ const View = {
     return page;
   },
  
-  
+
   renderLoginPage() {
     const ss = Model.getStyles();
     const wrap = this.el("div", { display: "flex", alignItems: "center", justifyContent: "center", padding: "60px 24px" });
