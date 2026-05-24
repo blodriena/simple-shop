@@ -712,7 +712,7 @@ const View = {
     wrap.appendChild(card);
     return wrap;
   },
- 
+  
   renderFooter() {
     const ss = Model.getStyles();
     const footer = this.el("footer", { background: ss.footerBg, padding: "40px 0 24px", marginTop: "40px", borderTop: `1px solid ${ss.navBorder}` });
