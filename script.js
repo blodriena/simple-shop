@@ -687,6 +687,7 @@ const View = {
     return page;
   },
  
+  
   renderLoginPage() {
     const ss = Model.getStyles();
     const wrap = this.el("div", { display: "flex", alignItems: "center", justifyContent: "center", padding: "60px 24px" });
