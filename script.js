@@ -638,7 +638,7 @@ const View = {
       row.appendChild(this.el("div", { fontSize: "16px", fontWeight: "600", color: ss.text }, `$${(item.price * item.qty).toFixed(2)}`));
       itemsWrap.appendChild(row);
     });
- 
+
     const btnRow = this.el("div", { display: "flex", gap: "12px", marginTop: "16px" });
     const clrBtn = this.el("button", { background: "transparent", border: `1px solid ${ss.btnOutline}`, color: ss.text, borderRadius: "6px", padding: "8px 16px", fontSize: "14px", cursor: "pointer" }, "Clear Cart");
     clrBtn.onclick = () => Controller.clearCart();
@@ -668,7 +668,7 @@ const View = {
     page.appendChild(wrap);
     return page;
   },
-  
+
   renderWishlistPage() {
     const ss = Model.getStyles();
     const page = this.el("div", { paddingBottom: "40px" });
