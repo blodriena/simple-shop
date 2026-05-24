@@ -782,6 +782,7 @@ const View = {
     app.appendChild(this.renderFooter());
   },
 };
+
 View.render();
 
 
