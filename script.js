@@ -755,7 +755,7 @@ const View = {
     footer.appendChild(wrap);
     return footer;
   },
- 
+  
   render() {
     this.injectStyles();
     const ss = Model.getStyles();
@@ -767,6 +767,7 @@ const View = {
  
     app.appendChild(this.renderNavbar());
  
+
     const pages = {
       home:       () => this.renderHomePage(),
       products:   () => this.renderProductsPage(),
