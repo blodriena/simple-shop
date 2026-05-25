@@ -87,7 +87,6 @@ const Model = {
 };
  
 const Controller = {
-  // UPDATED: syncs URL hash on every nav
   nav(page, extra) {
     Model.state.page = page;
     Model.state.showFilter = false;
@@ -101,7 +100,6 @@ const Controller = {
     View.render();
   },
  
-  // NEW: go to product by id, updates URL to #/product/3
   navToProduct(id) {
     Model.state.productId = id;
     Model.state.productTab = "description";
@@ -390,6 +388,7 @@ const View = {
     searchInput.oninput = e => Controller.setSearch(e.target.value);
     searchWrap.appendChild(searchInput);
     row.appendChild(searchWrap);
+    
  
     const filterToggle = this.el("button", { background: ss.inputBg, border: `1px solid ${ss.inputBorder}`, color: ss.text, borderRadius: "8px", padding: "0 18px", fontSize: "14px", cursor: "pointer", display: "flex", alignItems: "center", gap: "6px" }, `${ICON.filter} Filter`);
     filterToggle.onclick = () => Controller.toggleFilter();
@@ -416,7 +415,6 @@ const View = {
     }
     return wrap;
   },
- 
   renderProductCard(product) {
     const ss = Model.getStyles();
     const { ICON } = this;
@@ -448,7 +446,6 @@ const View = {
  
     const eyeBtn = document.createElement("button");
     eyeBtn.className = "overlay-btn"; eyeBtn.innerHTML = ICON.eye; eyeBtn.title = "View product";
-    // UPDATED: uses navToProduct which sets #/product/3 in URL
     eyeBtn.onclick = e => { e.stopPropagation(); Controller.navToProduct(product.id); };
  
     const cartOverlayBtn = document.createElement("button");
