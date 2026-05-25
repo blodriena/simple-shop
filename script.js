@@ -772,6 +772,7 @@ const View = {
     return footer;
   },
   
+  
   render() {
     this.injectStyles();
     const ss = Model.getStyles();
