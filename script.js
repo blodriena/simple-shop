@@ -607,6 +607,7 @@ const View = {
       wrap.appendChild(simSection);
     }
  
+    
     page.appendChild(wrap);
     return page;
   },
