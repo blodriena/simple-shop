@@ -606,7 +606,6 @@ const View = {
       simSection.appendChild(simGrid);
       wrap.appendChild(simSection);
     }
- 
     page.appendChild(wrap);
     return page;
   },
