@@ -416,8 +416,6 @@ const View = {
     return wrap;
   },
 
-
-  
   renderProductCard(product) {
     const ss = Model.getStyles();
     const { ICON } = this;
