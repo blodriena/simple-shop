@@ -1,35 +1,17 @@
- <!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Store</title>
-<link rel="icon" type="image/svg+xml" href="/gemini-svg.svg">
-<style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Segoe UI', sans-serif; min-height: 100vh; }
-  input, select, button { font-family: inherit; }
-</style>
-</head>
-<body>
-<div id="app"></div>
-<script src="script.js"></script>
-</body>
-</html>  -->
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Store</title>
+<link rel="icon" type="image/svg+xml" href="/gemini-svg.svg">
 </head>
 <body>
 <div id="app"></div>
 <script>
 const Model = {
   PRODUCTS: [
+
     { id: 1, title: "Mens Casual Premium Slim Fit T-Shirts", price: 22.30, category: "men's clothing", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrkcoLQOhIUUGQiyVrEM8JehInnK2XSbpdmw&s", rating: 4.1, reviews: 259, description: "Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket." },
     { id: 2, title: "Mens Casual Slim Fit", price: 15.99, category: "men's clothing", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ63wD20TjbroL4GaLTYJ-Jm_Jh9WBOA48_mQ&s", rating: 4.0, reviews: 187, description: "The color could be slightly different between on the screen and in practice. Slim fit design for a modern and stylish look. Made from premium quality fabric that is soft and breathable. Perfect for casual outings, meetings, and everyday wear." },
     { id: 3, title: "Mens Cotton Jacket", price: 55.99, category: "men's clothing", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQy3C9YaQ1AG_A-OGybJf5tMptpqaBk24eRhQ&s", rating: 4.7, reviews: 312, description: "Great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions, such as working, hiking, camping, mountain/rock climbing, cycling, traveling or other outdoor. Good gift choice for you or your family member. A warm hearted love to Father, husband or son in this thanksgiving or Christmas Day." },
@@ -47,7 +29,7 @@ const Model = {
     { id: 15, title: "Rain Jacket Women Windbreaker Striped Climbing Raincoats", price: 39.99, category: "women's clothing", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVh6mWQt-XEzw-s1B_mEM5fGO04AePGI3bhA&s", rating: 3.8, reviews: 679, description: "Lightweight perfect for trip or casual wear---Long sleeve with hooded, adjustable drawstring waist design. Button and zipper front closure raincoat." },
     { id: 16, title: "MBJ Women's Solid Short Sleeve Boat Neck V", price: 9.85, category: "women's clothing", image: "https://static.vecteezy.com/system/resources/thumbnails/024/509/430/small/jacket-isolated-on-background-with-generative-ai-png.png", rating: 4.7, reviews: 130, description: "95% RAYON 5% SPANDEX, Made in USA or Imported, Do Not Bleach, Lightweight fabric with great stretch for comfort, Ribbed on sleeves and neckline." },
   ],
- 
+
   CATEGORIES: [
     { id: "electronics",     label: "Electronics",     desc: "Browse all electronics products" },
     { id: "jewelery",        label: "Jewelery",         desc: "Browse all jewelery products" },
@@ -210,7 +192,6 @@ const Controller = {
     window.scrollTo(0, 0);
   },
  
-  // FIX 2: fake login with credentials someone@email.com / 12345678
   login() {
     const { email, password } = Model.state.loginForm;
     if (email === "someone@email.com" && password === "12345678") {
@@ -417,7 +398,6 @@ const View = {
     navbar.appendChild(inner);
     return navbar;
   },
- 
   renderSearchBar() {
     const ss = Model.getStyles();
     const { ICON } = this;
@@ -427,7 +407,6 @@ const View = {
     const searchWrap = this.el("div", { flex: "1", display: "flex", alignItems: "center", background: ss.inputBg, border: `1px solid ${ss.inputBorder}`, borderRadius: "8px", padding: "0 14px", gap: "8px" });
     searchWrap.innerHTML = `<span style="display:flex">${ICON.search.replace('stroke="currentColor"', `stroke="${ss.textSub}"`)}</span>`;
     const searchInput = this.el("input", { background: "transparent", border: "none", outline: "none", color: ss.text, fontSize: "14px", width: "100%", padding: "10px 0" }, undefined, { placeholder: "Search products...", type: "text", value: Model.state.search });
-    // FIX 1: oninput calls setSearch which only refreshes the grid, not the whole page
     searchInput.oninput = e => Controller.setSearch(e.target.value);
     searchWrap.appendChild(searchInput);
     row.appendChild(searchWrap);
@@ -522,7 +501,6 @@ const View = {
     const wrap = document.createElement("div"); wrap.className = "page-container";
     wrap.appendChild(this.el("h1", { fontSize: "24px", fontWeight: "700", margin: "28px 0 20px" }, "Online Store"));
     wrap.appendChild(this.renderSearchBar());
-    // FIX 1: grid wrapped in a div with id so setSearch can update it without re-rendering the page
     const gridContainer = this.el("div"); gridContainer.id = "product-grid-container";
     gridContainer.appendChild(this.renderProductGrid(Model.getFilteredProducts()));
     wrap.appendChild(gridContainer);
@@ -535,7 +513,6 @@ const View = {
     const wrap = document.createElement("div"); wrap.className = "page-container";
     wrap.appendChild(this.el("h1", { fontSize: "24px", fontWeight: "700", margin: "28px 0 20px" }, "Products"));
     wrap.appendChild(this.renderSearchBar());
-    // FIX 1: same grid container id for products page
     const gridContainer = this.el("div"); gridContainer.id = "product-grid-container";
     gridContainer.appendChild(this.renderProductGrid(Model.getFilteredProducts()));
     wrap.appendChild(gridContainer);
