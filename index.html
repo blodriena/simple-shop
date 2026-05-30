@@ -373,7 +373,6 @@ const View = {
       opt.onclick = () => Controller.setTheme(t.toLowerCase());
       themeDrop.appendChild(opt);
     });
-    
     let themeTimer;
     themeWrap.onmouseenter = () => { clearTimeout(themeTimer); themeDrop.style.display = "block"; };
     themeWrap.onmouseleave = () => { themeTimer = setTimeout(() => { themeDrop.style.display = "none"; }, 150); };
